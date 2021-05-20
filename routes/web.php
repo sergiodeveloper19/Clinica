@@ -20,5 +20,7 @@ Route::get('Consultorios', [ConsultoriosController::class, 'index']);
 
 Route::post('Consultorios',[ConsultoriosController::class, 'store']);
 
+Route::put('Consultorios/{id}',[ConsultoriosController::class, 'update']);
+
 Auth::routes();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Consultorios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ConsultoriosController extends Controller
 {
@@ -37,38 +38,13 @@ class ConsultoriosController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Consultorios  $consultorios
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Consultorios $consultorios)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Consultorios  $consultorios
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Consultorios $consultorios)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Consultorios  $consultorios
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Consultorios $consultorios)
+    public function update(Request $request)
     {
-        //
+        DB::table('consultorios')->where('id', request('id'))->update(['consultorio' => request('consultorioE')]);
+
+        return redirect('Consultorios');
     }
 
     /**
