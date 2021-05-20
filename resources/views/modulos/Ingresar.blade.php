@@ -10,12 +10,17 @@
         <p class="login-box-msg">Ingresar al sistema</p>
 
         <form action="{{ route('login') }}" method="POST">
-            
+
             @csrf
 
             <div class="form-group has-feedback">
                 {{-- Email --}}
-                <input type="email" name="email" class="form-control" required value="">
+                <input type="email" name="email" class="form-control" required value="{{ old('email')}}">
+
+                @error('email')
+                <br>
+                    <div class="alert alert-danger">Error con el email o la contraseña</div>
+                @enderror
 
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>

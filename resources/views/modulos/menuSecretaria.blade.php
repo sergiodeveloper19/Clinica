@@ -2,7 +2,7 @@
     <section class="sidebar">
         <ul class="sidebar-menu">
             <li>
-                <a href="#">
+                <a href="{{ url('Inicio')}}">
                     <i class="fa fa-home"></i>
                     <span>Inicio</span>
                 </a>
@@ -10,14 +10,14 @@
             </li>
 
              <li>
-                <a href="">
+                <a href="{{ url('Consultorios')}}">
                     <i class="fa fa-medkit"></i>
                     <span>Consultorios</span>
                 </a>
 
             </li>
              <li>
-                <a href="">
+                <a href="{{ url('Inicio')}}">
                     <i class="fa fa-user-md"></i>
                     <span>Doctores</span>
                 </a>
