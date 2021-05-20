@@ -45,7 +45,7 @@
                     <p>Inicie Sesion </p>
                 </div>
                 <div class="icon">
-                    <i class=" fa fa-user-md"></i>
+                    <i class=" fa fa-users"></i>
                 </div>
                 <a href="Ingresar" class="small-box-footer">
                     Ingresar<i class="fa fa-arrow-circle-right"></i>
@@ -61,7 +61,7 @@
                     <p>Inicie Sesion </p>
                 </div>
                 <div class="icon">
-                    <i class=" fa fa-user-md"></i>
+                    <i class=" fa fa-male"></i>
                 </div>
                 <a href="Ingresar" class="small-box-footer">
                     Ingresar<i class="fa fa-arrow-circle-right"></i>

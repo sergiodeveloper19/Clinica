@@ -36,7 +36,21 @@
 
 
 </div>
-@yield('contenido')
+{{-- Si estas autenticado entra en content --}}
+@if(Auth::user())
+
+    @include('modulos.cabecera')
+    @if(auth()->user()->rol == "Secretaria")
+        @include('modulos.menuSecretaria')
+    @endif
+
+    @yield('content')
+{{-- Si no estas autenticado entra en contenido --}}
+@else
+
+    @yield('contenido')
+
+@endif
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
