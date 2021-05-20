@@ -22,5 +22,7 @@ Route::post('Consultorios',[ConsultoriosController::class, 'store']);
 
 Route::put('Consultorios/{id}',[ConsultoriosController::class, 'update']);
 
+Route::delete('borrar-Consultorio/{id}', [ConsultoriosController::class, 'destroy']);
+
 Auth::routes();
 

@@ -45,8 +45,10 @@
                         </form>
                         <div class="col-md-1">
 
-                        <form action="" method="post">
+                        <form method="post" action="{{url('borrar-Consultorio/'.$consultorio->id) }}" >
                             @csrf
+                            @method('delete')
+
                             <button type="submit" class="btn btn-danger">Borrar</button>
 
                         </form>
