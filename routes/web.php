@@ -12,8 +12,5 @@ Route::get('/ingresar', function () {
 });
 
 
-
-
-
 Auth::routes();
 
