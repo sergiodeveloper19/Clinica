@@ -3,39 +3,55 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctores;
+use App\Models\Consultorios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DoctoresController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
+        if(auth()->user()->rol != "Administrador" && auth()->user()->rol != "Secretaria"){
+            return redirect('Inicio');
+        }
+
+        $consultorios = Consultorios::all();
+
+        $doctores = Doctores::all();
+
+        return view('modulos.Doctores', compact('consultorios','doctores'));
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $datos = request()->validate([
+            'name' => ['required'],
+            'sexo' => ['required'],
+            'id_consultorio' => ['required'],
+            'password' => ['required','string','min:3'],
+            'email' => ['required', 'string', 'email','unique:users'],
+        ]);
+
+        Doctores::create([
+            'name'=>$datos['name'],
+            'id_consultorio' => $datos['id_consultorio'],
+            'email' => $datos['email'],
+            'sexo' => $datos['sexo'],
+            'documento' => '',
+            'telefono ' => '',
+            'rol' => 'Doctor',
+            'password' => Hash::make($datos['password'])
+        ]);
+        return redirect('Doctores');
     }
 
     /**
