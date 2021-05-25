@@ -111,10 +111,20 @@
             'success'
         )
     </script>
+
 @elseif(session('Agregado') == 'Si')
  <script type="text/javascript">
         Swal.fire(
             'El Paciente ha sido agregado.',
+            '',
+            'success'
+        )
+    </script>
+
+@elseif(session('actualizadoP') == 'Si')
+ <script type="text/javascript">
+        Swal.fire(
+            'El Paciente ha sido actualizado.',
             '',
             'success'
         )
@@ -140,12 +150,33 @@
         confirmButtonColor: '#3085d6'
 
         }).then((result) =>{
-            if(result.isConfirm){
+            if(result.isConfirmed){
                 window.location = "Eliminar-Doctor/"+Did;
             }
         })
     })
 
+      $('.table').on('click','.EliminarPaciente', function(){
+
+        var Pid = $(this).attr('Pid');
+        var Paciente = $(this).attr('Paciente')
+
+        Swal.fire({
+
+        title: '¿Seguro que desea Eliminar el Paciente: '+Paciente+'?',
+        icon:'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar',
+        confirmButtonColor: '#3085d6'
+
+        }).then((result) =>{
+            if(result.isConfirmed){
+                window.location = "Eliminar-Paciente/"+Pid;
+            }
+        })
+    })
 
 </script>
 

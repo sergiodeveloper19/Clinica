@@ -52,10 +52,13 @@
                                 <td>No disponible</td>
                             @endif
 
-                         
+
                             <td>
-                                <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <a href="Editar-Paciente/{{$paciente->id}}">
+                                    <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+                                </a>
+                                <button class="btn btn-danger EliminarPaciente" Pid="{{$paciente->id}}"
+                                    Paciente="{{$paciente->name}}"><i class="fa fa-trash"></i></button>
                             </td>
 
                         </tr>

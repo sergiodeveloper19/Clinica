@@ -75,48 +75,104 @@ class PacientesController extends Controller
         return redirect('Pacientes')->with('Agregado', 'Si');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pacientes  $pacientes
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pacientes $pacientes)
+
+    public function edit(Pacientes $id)
     {
-        //
+
+        if (
+            auth()->user()->rol != 'Administrador' && auth()->user()->rol != 'Secretaria' &&
+            auth()->user()->rol != 'Doctor'
+        ) {
+
+            return redirect('Inicio');
+        }
+
+        $paciente = Pacientes::find($id->id);
+
+        return view('modulos.Editar-Paciente')->with('paciente',$paciente);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pacientes  $pacientes
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pacientes $pacientes)
+
+    public function update(Request $request, Pacientes $paciente)
     {
-        //
+        if($paciente["email"] != request('email') && request('passwordN') != ""){
+
+            $datos = request()->validate([
+
+                'name' => ['required'],
+                'documento' => ['required'],
+                'passwordN' => ['required', 'string', 'min:3'],
+                'email' => ['required', 'string', 'email', 'unique:users']
+            ]);
+
+
+            DB::table('users')->where('id',$paciente["id"])->update(['name' => $datos["name"],
+            'email'=> $datos['email'], 'documento'=> $datos['documento'], 'password'=>Hash::make(
+            $datos["passwordN"])]);
+
+        }
+
+
+        else if ($paciente["email"] != request('email') && request('passwordN') != ""){
+
+             $datos = request()->validate([
+
+                'name' => ['required'],
+                'documento' => ['required'],
+                'password' => ['required', 'string', 'min:3'],
+                'email' => ['required', 'string', 'email', 'unique:users']
+            ]);
+
+
+            DB::table('users')->where('id',$paciente["id"])->update(['name' => $datos["name"],
+            'email'=> $datos['email'], 'documento'=> $datos['documento'], 'password' =>Hash::make(
+            $datos["password"])]);
+        }
+        else if ($paciente["email"] == request('email') && request('passwordN') != ""){
+
+             $datos = request()->validate([
+
+                'name' => ['required'],
+                'documento' => ['required'],
+                'passwordN' => ['required', 'string', 'min:3'],
+                'email' => ['required', 'string', 'email']
+            ]);
+
+
+            DB::table('users')->where('id',$paciente["id"])->update([
+                'name' => $datos["name"],
+                'email' => $datos['email'], 'documento' => $datos['documento'], 'password' => Hash::make(
+                    $datos["passwordN"]
+                )]);
+        }else{
+             $datos = request()->validate([
+
+                'name' => ['required'],
+                'documento' => ['required'],
+                'password' => ['required', 'string', 'min:3'],
+                'email' => ['required', 'string', 'email']
+            ]);
+
+
+            DB::table('users')->where('id',$paciente["id"])->update(['name' => $datos["name"],
+            'email'=> $datos['email'], 'documento'=> $datos['documento'], 'password' =>Hash::make(
+                $datos["password"])]);
+
+        }
+
+        return redirect ('Pacientes')->with('actualizadoP','Si');
+
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pacientes  $pacientes
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pacientes $pacientes)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pacientes  $pacientes
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pacientes $pacientes)
+    public function destroy($id)
     {
-        //
+
+        Pacientes::destroy($id);
+
+        return redirect('Pacientes');
+
     }
 }
