@@ -111,6 +111,16 @@
             'success'
         )
     </script>
+@elseif(session('Agregado') == 'Si')
+ <script type="text/javascript">
+        Swal.fire(
+            'El Paciente ha sido agregado.',
+            '',
+            'success'
+        )
+    </script>
+
+
 @endif
 
 <script type="text/javascript">

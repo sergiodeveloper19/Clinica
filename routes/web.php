@@ -33,6 +33,9 @@ Route::post('Doctores', [DoctoresController::class, 'store']);
 Route::get('Eliminar-Doctor/{id}',[DoctoresController::class, 'destroy']);
 // Pacientes
 Route::get('Pacientes',[PacientesController::class, 'index']);
+Route::get('Crear-Paciente', [PacientesController::class, 'create']);
+Route::post('Crear-Paciente', [PacientesController::class, 'store']);
+
 
 Auth::routes();
 
