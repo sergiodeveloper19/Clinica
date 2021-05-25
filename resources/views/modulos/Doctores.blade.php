@@ -16,7 +16,7 @@
                 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CrearDoctor">Crear Doctor</button>
             </div>
             <div class="box-body">
-                <table class="table table-bordered table-hover table-stripp">
+                <table class="table table-bordered table-hover table-stripp dt-responsive">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -57,7 +57,7 @@
                             @endif
 
                                 <td>
-                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-danger EliminarDoctor" Did="{{$doctor->id }}"><i class="fa fa-trash"></i></button>
                                 </td>
 
                             </tr>
@@ -127,8 +127,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    {{-- <button type="submit" class="btn btn-primary">Crear</button> --}}
-                     <button type="button" class="btn btn-danger" data-dissmis="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 </div>
 
             </form>

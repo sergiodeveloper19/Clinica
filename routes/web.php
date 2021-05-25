@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ConsultoriosController;
 use App\Http\Controllers\DoctoresController;
+use App\Http\Controllers\PacientesController;
 
 Route::get('/', function () {
     return view('modulos.Seleccionar');
@@ -29,8 +30,9 @@ Route::delete('borrar-Consultorio/{id}', [ConsultoriosController::class, 'destro
 // Doctores
 Route::get('Doctores', [DoctoresController::class, 'index']);
 Route::post('Doctores', [DoctoresController::class, 'store']);
-
-
+Route::get('Eliminar-Doctor/{id}',[DoctoresController::class, 'destroy']);
+// Pacientes
+Route::get('Pacientes',[PacientesController::class, 'index']);
 
 Auth::routes();
 

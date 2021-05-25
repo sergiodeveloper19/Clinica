@@ -25,7 +25,7 @@
             </li>
 
              <li>
-                <a href="">
+                <a href="{{ url('Pacientes')}}">
                      <i class="fa fa-users"></i>
                     <span>Pacientes</span>
                 </a>

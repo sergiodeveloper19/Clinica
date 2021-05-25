@@ -26,6 +26,12 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="http://127.0.0.1:8000/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 
+    {{-- DataTables --}}
+    <link rel="stylesheet" href="http://127.0.0.1:8000/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+
+   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css"> --}}
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -85,5 +91,59 @@
 <script src="http://127.0.0.1:8000/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="http://127.0.0.1:8000/dist/js/demo.js"></script>
+
+{{-- Datatables --}}
+{{-- <script src="http://127.0.0.1:8000/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="http://127.0.0.1:8000/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+<script src="http://127.0.0.1:8000/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script> --}}
+
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+{{-- <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script> --}}
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('registrado') == 'Si')
+    <script type="text/javascript">
+        Swal.fire(
+            'El Doctor ha sido registrado.',
+            '',
+            'success'
+        )
+    </script>
+@endif
+
+<script type="text/javascript">
+
+    $('.table').on('click','.EliminarDoctor', function(){
+
+        var Did = $(this).attr('Did');
+
+        Swal.fire({
+
+        title: '¿Seguro que desea Eliminar este Doctor?',
+        icon:'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar',
+        confirmButtonColor: '#3085d6'
+
+        }).then((result) =>{
+            if(result.isConfirm){
+                window.location = "Eliminar-Doctor/"+Did;
+            }
+        })
+    })
+
+
+</script>
+
+{{-- <script type="text/javascript">
+
+    $(".table").Datatable();
+
+</script> --}}
+
 </body>
 </html>

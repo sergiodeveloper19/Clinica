@@ -15,7 +15,7 @@ class CreateConsultoriosTable extends Migration
     {
         Schema::create('consultorios', function (Blueprint $table) {
             $table->id();
-            $table->text('consultorio');
+            $table->text('consultorio')->nullable();;
         });
     }
 

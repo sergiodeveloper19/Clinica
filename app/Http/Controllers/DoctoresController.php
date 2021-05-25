@@ -6,6 +6,7 @@ use App\Models\Doctores;
 use App\Models\Consultorios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class DoctoresController extends Controller
 {
@@ -51,51 +52,14 @@ class DoctoresController extends Controller
             'rol' => 'Doctor',
             'password' => Hash::make($datos['password'])
         ]);
+        return redirect('Doctores')->with('registrado','Si');
+    }
+
+    public function destroy($id)
+    {
+        DB::table('users')->where($id)->delete();
+
         return redirect('Doctores');
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Doctores  $doctores
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Doctores $doctores)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Doctores  $doctores
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Doctores $doctores)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Doctores  $doctores
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Doctores $doctores)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Doctores  $doctores
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Doctores $doctores)
-    {
-        //
     }
 }
