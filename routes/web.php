@@ -5,13 +5,15 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ConsultoriosController;
 use App\Http\Controllers\DoctoresController;
 use App\Http\Controllers\PacientesController;
+use App\Http\Controllers\CitasController;
+
 
 Route::get('/', function () {
     return view('modulos.Seleccionar');
 });
 
-Route::get('/ingresar', function () {
-    return view('modulos.ingresar');
+Route::get('/Ingresar', function () {
+    return view('modulos.Ingresar');
 });
 
 
@@ -38,6 +40,11 @@ Route::post('Crear-Paciente', [PacientesController::class, 'store']);
 Route::get('Editar-Paciente/{id}', [PacientesController::class, 'edit']);
 Route::put('actualizar-paciente/{paciente}', [PacientesController::class, 'update']);
 Route::get('Eliminar-Paciente/{id}', [PacientesController::class, 'destroy']);
+
+// Citas
+Route::get('Citas/{id}', [CitasController::class, 'index']);
+Route::post('Citas/{id}',[CitasController::class,'HorarioDoctor']);
+Route::put('editar-horario/{id}', [CitasController::class, 'EditarHorario']);
 
 
 Auth::routes();

@@ -46,8 +46,15 @@
 @if(Auth::user())
 
     @include('modulos.cabecera')
+
     @if(auth()->user()->rol == "Secretaria")
+
         @include('modulos.menuSecretaria')
+
+        @elseif(auth()->user()->rol == "Doctor")
+
+        @include('modulos.menuDoctor'))
+
     @endif
 
     @yield('content')
