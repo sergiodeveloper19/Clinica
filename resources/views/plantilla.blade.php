@@ -198,11 +198,12 @@
 
 <?php
 
-    $exp = explode("/", $_SERVER["REQUEST_URI"]);
+     $exp = explode("/", $_SERVER["REQUEST_URI"]);
 
 ?>
 
-@if($exp[3] == "Citas")
+
+@if($exp[2] == "Citas")
 
 {{-- Solicitar cita medica --}}
 
@@ -221,7 +222,7 @@
 
         @if($horarios != null)
 
-            scrollTime: "{{$hora->horaInicio }}",
+            scrollTime: "{{ $hora->horaInicio }}",
             minTime: "{{$hora->horaInicio }}",
             maxTime: "{{$hora->horaFin }}",
 
